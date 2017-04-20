@@ -1,0 +1,171 @@
+fileFormatVersion: 2
+guid: 61835fc8be3b13242b183c4120b5100d
+timeCreated: 1483576851
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Player_body
+    21300002: Player_head
+    21300004: Player_mouth
+    21300006: Player_arm
+    21300008: Player_hand
+    21300010: Player_leg
+    21300012: Player_foot
+    21300014: Player_tail
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 640
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Player_body
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 75
+        width: 481
+        height: 1256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Player_head
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 1208
+        width: 461
+        height: 295
+      alignment: 9
+      pivot: {x: 0.27839538, y: 0.23517942}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Player_mouth
+      rect:
+        serializedVersion: 2
+        x: 1133
+        y: 1220
+        width: 153
+        height: 69
+      alignment: 9
+      pivot: {x: 0.26433808, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Player_arm
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 707
+        width: 339
+        height: 396
+      alignment: 9
+      pivot: {x: 0.25182438, y: 0.7428036}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Player_hand
+      rect:
+        serializedVersion: 2
+        x: 1057
+        y: 676
+        width: 100
+        height: 235
+      alignment: 9
+      pivot: {x: 0.439906, y: 0.83243406}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Player_leg
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 310
+        width: 304
+        height: 274
+      alignment: 9
+      pivot: {x: 0.46046427, y: 0.6754566}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Player_foot
+      rect:
+        serializedVersion: 2
+        x: 1058
+        y: 304
+        width: 180
+        height: 92
+      alignment: 9
+      pivot: {x: 0.16614448, y: 0.6306388}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Player_tail
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 38
+        width: 991
+        height: 142
+      alignment: 9
+      pivot: {x: 0.96086115, y: 0.54231924}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
