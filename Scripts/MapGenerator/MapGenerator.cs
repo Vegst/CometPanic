@@ -2,47 +2,85 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class MapGenerator : MonoBehaviour {
 
-    private List<GameObject> chunks;
+    public int chunkWidth;
+    public int chunkOffset;
+    public GameObject chunkPrefab;
+    public bool collidable;
 
-    void Start ()
+    void LateUpdate()
     {
-        chunks = new List<GameObject>();
-    }
-	
-	void Update ()
-    {
-        /*
-        float cameraMinX = Camera.main.gameObject.transform.position.x - Camera.main.orthographicSize * Camera.main.aspect;
-        float cameraMaxX = Camera.main.gameObject.transform.position.x + Camera.main.orthographicSize * Camera.main.aspect;
-        float x0 = Mathf.Floor(cameraMinX / chunkSize) * chunkSize - offset;
-        float x1 = Mathf.Ceil(cameraMaxX / chunkSize) * chunkSize + offset;
+        float cameraMinX = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, transform.position.z - Camera.main.transform.position.z)).x;
+        float cameraMaxX = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, transform.position.z - Camera.main.transform.position.z)).x;
 
-        // Delete old
-        foreach (GameObject chunk in GetChunksToRemove())
+        // Delete old chunk
+        foreach (GameObject c in GetChunksToRemove())
         {
-            chunks.Remove(chunk);
-            Destroy(chunk);
+            Destroy(c);
         }
 
-
-        // Generate new
-        for (float x = x0; x < x1; x += chunkSize)
+        // Create new chunk
+        for (float x = Mathf.Floor((cameraMinX - chunkOffset) / chunkWidth) * chunkWidth; x < Mathf.Ceil((cameraMaxX + chunkOffset) / chunkWidth) * chunkWidth; x += chunkWidth)
         {
-            if (!IsChunkInInterval(x, x + chunkSize))
+            if (!IsChunkInInterval(x, x + chunkWidth))
             {
                 GameObject chunk = Instantiate(chunkPrefab) as GameObject;
-                ChunkMeshGenerator generator = chunk.GetComponent<ChunkMeshGenerator>();
-                chunk.transform.position = new Vector2(x, x / 2);
-                generator.size.x = chunkSize;
-                generator.size.y = chunkSize / 2;
-                generator.a0 = generator.size.y / generator.size.x + GetRandomValue(x);
-                generator.a1 = generator.size.y / generator.size.x + GetRandomValue(x + chunkSize);
-                generator.iterations = 20;
-                chunks.Add(chunk);
+                ChunkGenerator generator = chunk.AddComponent<ChunkGenerator>() as ChunkGenerator;
+                chunk.transform.parent = transform;
+                chunk.transform.localPosition = new Vector2(x,0);
+                generator.size = new Vector2(chunkWidth, 0);
+                generator.a0 = GetRandomValue(transform.position + new Vector3(x, 0f, 0f), 2);
+                generator.a1 = GetRandomValue(transform.position + new Vector3(x + chunkWidth, 0f, 0f), 2);
+                generator.iterations = 11;
+                generator.depth = 1;
+                generator.chunkPrefab = chunkPrefab;
+                generator.collidable = collidable;
+                generator.offset = chunkOffset;
             }
         }
-        */
+    }
+
+    static float GetRandomValue(Vector3 p, int seed)
+    {
+        Random.InitState((int)(p.x + p.y + p.z + seed));
+        return Random.Range(-1.0f, 1.0f);
+    }
+
+    List<GameObject> GetChunksToRemove()
+    {
+        List<GameObject> toRemove = new List<GameObject>();
+        foreach (Transform child in transform)
+        {
+            ChunkGenerator generator = child.gameObject.GetComponent<ChunkGenerator>();
+            if (!IsIntervalVisible(child.gameObject.transform.position.x - chunkOffset, child.gameObject.transform.position.x + generator.size.x + chunkOffset))
+            {
+                toRemove.Add(child.gameObject);
+            }
+        }
+        return toRemove;
+    }
+
+    bool IsChunkInInterval(float x0, float x1)
+    {
+        foreach (Transform child in transform)
+        {
+            ChunkGenerator generator = child.gameObject.GetComponent<ChunkGenerator>();
+            if (child.gameObject.transform.position.x + generator.size.x > x0 + 0.1f &&
+                child.gameObject.transform.position.x < x1 - 0.1f)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool IsIntervalVisible(float x0, float x1)
+    {
+        Vector3 screenPoint0 = Camera.main.WorldToViewportPoint(transform.position + new Vector3(x0, 0, 0));
+        Vector3 screenPoint1 = Camera.main.WorldToViewportPoint(transform.position + new Vector3(x1, 0, 0));
+
+        return screenPoint0.x < 1 && screenPoint1.x > 0;
     }
 }

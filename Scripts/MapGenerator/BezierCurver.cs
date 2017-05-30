@@ -11,7 +11,7 @@ public class BezierCurver {
         for (int i = 0; i <= iterations; i++)
         {
             float t = (float)i / iterations;
-            vertices[i] = Mathf.Pow(1 - t, 3) * p0 + 3 * Mathf.Pow(1 - t, 2) * t * p1 + 3 * (1 - t) * Mathf.Pow(t, 2) * p2 + Mathf.Pow(t, 3) * p3;//startPos + (float)(i - start) / (end - start) * (endPos - startPos);
+            vertices[i] = Mathf.Pow(1 - t, 3) * p0 + 3 * Mathf.Pow(1 - t, 2) * t * p1 + 3 * (1 - t) * Mathf.Pow(t, 2) * p2 + Mathf.Pow(t, 3) * p3;
         }
         return vertices;
     }
